@@ -40,7 +40,11 @@ class iNatProject(iNatApiClient):
     def __init__(self, name):
         super().__init__()
         self.__name = name
-        self.__id = 0
+        json_response = super().rest_api_get("/projects", {"q": self.__name})
+        if DEBUG:
+            print(json.dumps(json_response, indent=4))
+
+        self.__id = json_response["results"][0]["id"]
 
     @property
     def name(self):
@@ -50,17 +54,10 @@ class iNatProject(iNatApiClient):
     def id(self):
         return self.__id
 
-    def get(self):
-        json_response = super().rest_api_get("/projects", {"q": self.__name})
-        if DEBUG:
-            print(json.dumps(json_response, indent=4))
-
-        self.__id = json_response["results"][0]["id"]
 
 def main():
     myInat = iNatUser("vhamon")
     project = iNatProject("Amphibiens d'Ille-et-Vilaine")
-    project.get()
 
     print("{} ({})".format(project.name, project.id))
 
