@@ -59,7 +59,7 @@ class iNatProject(iNatApiClient):
 
 def main():
     myInat = iNatUser("vhamon")
-    project = iNatProject("Biodiversité d'Ille-et-Vilaine")
+    project = iNatProject("Amphibiens d'Ille-et-Vilaine")
     project.get()
 
     print("{} ({})".format(project.name, project.id))
