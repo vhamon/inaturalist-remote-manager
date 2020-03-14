@@ -5,7 +5,7 @@ import os
 import requests
 import urllib.parse
 
-DEBUG = True
+DEBUG = False
 
 class iNatApiClient(object):
     def __init__(self):
